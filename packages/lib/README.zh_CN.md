@@ -57,7 +57,6 @@ https://cdn.jsdelivr.net/npm/unity-webgl/vue/index.global.js
 <button onclick="postMessage()">postMessage</button>
 <button onclick="onFullscreen()">Fullscreen</button>
 <button onclick="onUnload()">Unload</button>
-<button onclick="onReload()">Reload</button>
 
 <script>
 var unityContext = new UnityWebgl('#canvas', {
@@ -90,15 +89,6 @@ function postMessage() {
 
 function onUnload() {
   unityContext.unload()
-}
-
-function onReload() {
-  unityContext.reload({
-    loaderUrl: '/Build2/unity.loader.js',
-    dataUrl: "/Build2/unity.data",
-    frameworkUrl: "/Build2/unity.framework.js",
-    codeUrl: "/Build2/unity.wasm",
-  })
 }
 
 function onFullscreen() {
@@ -219,10 +209,6 @@ UnityWebgl 实例方法
 退出Unity实例并将其从内存中清除，以便从DOM中Unmount。此时也会删除所有已注册的方法。  
 > 操作完成之后会触发 `unmounted` 事件
 
-#### `reload(config): void`
-重新载入Unity资源并重建Unit应用实例。
-- `config`: Unity 应用程序的配置项, [@详见](#config)
-
 #### `send(objectName: string, methodName: string, params?: any)`  
 ⭐️ 向Unity实例对象发送消息，调用一个公共方法。
 - `objectName`: Unity场景中对象的名称
@@ -251,9 +237,6 @@ UnityWebgl 实例方法
 
 #### `emit(eventName: string)`  
 触发监听事件
-
-#### `clear()`  
-清空监听事件
 
 
 ### Events
@@ -287,12 +270,6 @@ unityContext.on('beforeUnmount', (unityContext) => {})
 Unity实例已退出并将其从内存中清除。
 ```js
 unityContext.on('unmounted', () => {})
-```
-
-#### reload
-Unity实例开始重新载入。
-```js
-unityContext.on('reload', (unityContext) => {})
 ```
 
 #### error

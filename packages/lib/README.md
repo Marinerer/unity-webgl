@@ -53,7 +53,6 @@ https://cdn.jsdelivr.net/npm/unity-webgl/vue/index.global.js
 <button onclick="postMessage()">postMessage</button>
 <button onclick="onFullscreen()">Fullscreen</button>
 <button onclick="onUnload()">Unload</button>
-<button onclick="onReload()">Reload</button>
 
 <script>
 var unityContext = new UnityWebgl('#canvas', {
@@ -86,15 +85,6 @@ function postMessage() {
 
 function onUnload() {
   unityContext.unload()
-}
-
-function onReload() {
-  unityContext.reload({
-    loaderUrl: '/Build2/unity.loader.js',
-    dataUrl: "/Build2/unity.data",
-    frameworkUrl: "/Build2/unity.framework.js",
-    codeUrl: "/Build2/unity.wasm",
-  })
 }
 
 function onFullscreen() {
@@ -210,10 +200,6 @@ Create Unity instances and render them on the canvas.
 Quits the Unity instance and clears it from memory so that Unmount from the DOM.  
 > The `unmounted` event will be triggered after the operation is completed.
 
-#### `reload(config): void`
-Reload Unity resources and rebuild the Unity application instance.
-- `config`: The configuration of Unity application, [@see](#config)
-
 #### `send(objectName: string, methodName: string, params?: any)`  
 ⭐️ Sends a message to the UnityInstance to invoke a public method.
 - `objectName`: Where objectName is the name of an object in your scene.
@@ -242,9 +228,6 @@ Cancel listening event
 
 #### `emit(eventName: string)`  
 Trigger listening event
-
-#### `clear()`  
-Clear listening event
 
 
 ### Events
@@ -278,12 +261,6 @@ unityContext.on('beforeUnmount', (unityContext) => {})
 The Unity instance has been exited and cleared from memory.
 ```js
 unityContext.on('unmounted', () => {})
-```
-
-#### reload
-The Unity instance starts to reload.
-```js
-unityContext.on('reload', (unityContext) => {})
 ```
 
 #### error
