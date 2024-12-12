@@ -4,8 +4,8 @@ temp
 
 # Ignore build output
 dist/
+/vue
 coverage/
-*.js.map
 
 # local env files
 .env.local

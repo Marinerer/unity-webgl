@@ -1,12 +1,60 @@
 {
-  "name": "unity-webgl",
-  "version": "3.5.6",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "Apache-2.0"
+	"name": "unity",
+	"private": true,
+	"scripts": {
+		"clean": "rimraf dist",
+		"format": "prettier --write --cache .",
+		"format-check": "prettier --check --cache .",
+		"build": "pnpm -r build",
+		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+		"preinstall": "npx only-allow pnpm",
+		"postinstall": "simple-git-hooks"
+	},
+	"simple-git-hooks": {
+		"pre-commit": "npx lint-staged",
+		"commit-msg": "node scripts/verifyCommit.mjs"
+	},
+	"lint-staged": {
+		"*.{js,mjs,json,cjs}": [
+			"prettier --write"
+		],
+		"*.ts?(x)": [
+			"prettier --parser=typescript --write"
+		]
+	},
+	"engines": {
+		"node": ">=18.0.0"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "Apache-2.0",
+	"devDependencies": {
+		"@rollup/plugin-commonjs": "^28.0.1",
+		"@rollup/plugin-json": "^6.1.0",
+		"@rollup/plugin-node-resolve": "^15.3.0",
+		"@rollup/plugin-terser": "^0.4.4",
+		"@rollup/plugin-typescript": "^12.1.1",
+		"@testing-library/jest-dom": "^6.6.3",
+		"@types/jest": "^29.5.14",
+		"@types/node": "^22.10.2",
+		"diy-log": "^2.5.2",
+		"execa": "^9.5.2",
+		"fast-glob": "^3.3.2",
+		"jest": "^29.7.0",
+		"jest-environment-jsdom": "^29.7.0",
+		"lint-staged": "^15.2.11",
+		"minimist": "^1.2.8",
+		"prettier": "^3.4.2",
+		"rimraf": "^6.0.1",
+		"rollup": "^4.28.1",
+		"rollup-plugin-dts": "^6.1.1",
+		"simple-git-hooks": "^2.11.1",
+		"ts-jest": "^29.2.5",
+		"tslib": "^2.8.1",
+		"typescript": "^5.7.2"
+	}
 }
