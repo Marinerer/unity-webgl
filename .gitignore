@@ -1,0 +1,25 @@
+.DS_Store
+node_modules
+temp
+
+# Ignore build output
+dist/
+coverage/
+*.js.map
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+*.log
+TODOs.md
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.tsbuildinfo
