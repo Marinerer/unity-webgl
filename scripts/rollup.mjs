@@ -36,7 +36,7 @@ async function build(config, { banner, pkg }) {
 			},
 			{
 				file: `${filename}.min.js`,
-				format: 'iife',
+				format: 'umd',
 				name: config.name,
 				banner,
 				plugins: [terser()],
