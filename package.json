@@ -5,8 +5,13 @@
 		"clean": "rimraf dist",
 		"format": "prettier --write --cache .",
 		"format-check": "prettier --check --cache .",
-		"build": "pnpm -r build",
+		"build:core": "pnpm --filter unity-webgl run build",
+		"build:components": "pnpm --filter components run build",
+		"build:all": "pnpm -r --filter=./lib/* run build",
+		"build": "pnpm run build:core && pnpm run build:components",
 		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+		"bump": "bumpp lib/core/package.json",
+		"publish": "pnpm -r --filter unity-webgl publish --no-git-checks",
 		"preinstall": "npx only-allow pnpm",
 		"postinstall": "simple-git-hooks"
 	},
@@ -30,7 +35,7 @@
 		"registry": "https://registry.npmjs.org/"
 	},
 	"keywords": [],
-	"author": "",
+	"author": "Mariner <mengqing723@gmail.com>",
 	"license": "Apache-2.0",
 	"devDependencies": {
 		"@rollup/plugin-commonjs": "^28.0.1",
@@ -41,6 +46,8 @@
 		"@testing-library/jest-dom": "^6.6.3",
 		"@types/jest": "^29.5.14",
 		"@types/node": "^22.10.2",
+		"bumpp": "^9.9.0",
+		"changelogithub": "^0.13.11",
 		"diy-log": "^2.5.2",
 		"execa": "^9.5.2",
 		"fast-glob": "^3.3.2",

@@ -36,7 +36,10 @@ function generateBanner(pkg) {
 
 	await rimraf('dist')
 
-	await rollupBuild(pkg.buildOptions, { banner, pkg })
+	const options = [].concat(pkg.buildOptions)
+	for (const opt of options) {
+		await rollupBuild(opt, { banner, pkg })
+	}
 
 	if (!isLib) {
 		await copyFiles('dist', '../core/dist')
