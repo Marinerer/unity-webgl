@@ -10,12 +10,6 @@ async function readJSON(path) {
 	return JSON.parse(result)
 }
 
-async function copyFiles(source, dest) {
-	await fs.cp(source, dest, {
-		recursive: true,
-	})
-}
-
 function generateBanner(pkg) {
 	return (
 		'/*!\n' +
@@ -42,6 +36,9 @@ function generateBanner(pkg) {
 	}
 
 	if (!isLib) {
-		await copyFiles('dist', '../core/dist')
+		await fs.cp('dist', '../core/dist', { recursive: true })
+	} else {
+		await fs.cp('./README.md', '../../README.md', { force: true })
+		await fs.cp('./README.zh_CN.md', '../../README.zh_CN.md', { force: true })
 	}
 })()
