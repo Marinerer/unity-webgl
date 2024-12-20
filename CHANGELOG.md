@@ -15,7 +15,7 @@
 - Add initial package and tsconfig for components and core &nbsp;-&nbsp; by @Marinerer [<samp>(5deba)</samp>](https://github.com/Marinerer/unity-webgl/commit/5deba6b)
 - Add UnityWebglComponent for Vue integration &nbsp;-&nbsp; by @Marinerer [<samp>(68e23)</samp>](https://github.com/Marinerer/unity-webgl/commit/68e237e)
 - Add comprehensive UnityWebgl testing suite &nbsp;-&nbsp; by @Marinerer [<samp>(82330)</samp>](https://github.com/Marinerer/unity-webgl/commit/823307c)
-- 
+
 ### &nbsp;&nbsp;&nbsp;📝 Documentation
 
 - Add documentation &nbsp;-&nbsp; by @Marinerer [<samp>(f0411)</samp>](https://github.com/Marinerer/unity-webgl/commit/f041121)

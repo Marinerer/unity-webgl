@@ -1,6 +1,8 @@
 # unity-webgl
 
 [![version](https://img.shields.io/npm/v/unity-webgl?style=flat-square)](https://www.npmjs.com/package/unity-webgl)
+[![codecov](https://codecov.io/gh/Marinerer/unity-webgl/graph/badge.svg?token=7J0R98DRUB)](https://codecov.io/gh/Marinerer/unity-webgl)
+[![release](https://img.shields.io/github/actions/workflow/status/Marinerer/unity-webgl/release.yml?style=flat-square)](https://github.com/Marinerer/unity-webgl/releases)
 [![downloads](https://img.shields.io/npm/dm/unity-webgl?style=flat-square)](https://www.npmjs.com/package/unity-webgl)
 [![size](https://img.shields.io/bundlephobia/minzip/unity-webgl?style=flat-square)](https://bundlephobia.com/package/unity-webgl)
 [![license](https://img.shields.io/npm/l/unity-webgl?style=flat-square)](https://github.com/Marinerer/unity-webgl)
@@ -9,8 +11,9 @@
 
 `unity-webgl` provides an easy solution for embedding `Unity WebGL` builds in your web applications, with two-way communication and interaction between your webApp and Unity application with advanced API's.
 
-> Framework agnostic, usable in any web project.
-> Currently includes Vue components, supporting both Vue 2/3.
+> 🚨 Reminder
+> 
+> `v4.x` has been updated significantly and the API is not compatible with `v3.x` and earlier versions. For upgrades, please refer to [Changelogs](https://github.com/Marinerer/unity-webgl/wiki/Major-changes-in-v4)
 
 Based on [react-unity-webgl](https://github.com/jeffreylanters/react-unity-webgl)
 
@@ -118,10 +121,10 @@ Initializes the Unity application's configuration items.
 
 | Property                 | Type    | Description                                                                                        | Required |
 | ------------------------ | ------- | -------------------------------------------------------------------------------------------------- | -------- |
-| `loaderUrl`              | string  | Unity resource loader file                                                                         | ✅       |
-| `dataUrl`                | string  | File containing resource data and scenes                                                           | ✅       |
-| `frameworkUrl`           | string  | File with runtime and plugin code                                                                  | ✅       |
-| `codeUrl`                | string  | WebAssembly binary file with native code                                                           | ✅       |
+| `loaderUrl`              | string  | Unity resource loader file                                                                         | ✅        |
+| `dataUrl`                | string  | File containing resource data and scenes                                                           | ✅        |
+| `frameworkUrl`           | string  | File with runtime and plugin code                                                                  | ✅        |
+| `codeUrl`                | string  | WebAssembly binary file with native code                                                           | ✅        |
 | `streamingAssetsUrl`     | string  | URL for streaming resources                                                                        | Optional |
 | `memoryUrl`              | string  | URL for generated framework files                                                                  | Optional |
 | `symbolsUrl`             | string  | URL for generated Unity code files                                                                 | Optional |

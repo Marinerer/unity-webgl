@@ -1,6 +1,8 @@
 # unity-webgl
 
 [![version](https://img.shields.io/npm/v/unity-webgl?style=flat-square)](https://www.npmjs.com/package/unity-webgl)
+[![codecov](https://codecov.io/gh/Marinerer/unity-webgl/graph/badge.svg?token=7J0R98DRUB)](https://codecov.io/gh/Marinerer/unity-webgl)
+[![release](https://img.shields.io/github/actions/workflow/status/Marinerer/unity-webgl/release.yml?style=flat-square)](https://github.com/Marinerer/unity-webgl/releases)
 [![downloads](https://img.shields.io/npm/dm/unity-webgl?style=flat-square)](https://www.npmjs.com/package/unity-webgl)
 [![size](https://img.shields.io/bundlephobia/minzip/unity-webgl?style=flat-square)](https://bundlephobia.com/package/unity-webgl)
 [![license](https://img.shields.io/npm/l/unity-webgl?style=flat-square)](https://github.com/Marinerer/unity-webgl)
@@ -9,17 +11,19 @@
 
 `unity-webgl` 提供了一个简单的解决方案，用于将 `Unity WebGL` 构建嵌入到 Web 应用程序中，同时为 Unity 和 WebApp 应用之间的双向通信和交互提供 API。
 
-> 无框架限制，可用于任何 Web 项目。
-> 目前仅内置vue组件，支持 `vue2/3`。
+> 🚨 提醒
+> 
+> `v4.x` 版本进行了较大更新，API 不兼容 `v3.x`及之前版本。升级请参考 [变更信息](https://github.com/Marinerer/unity-webgl/wiki/Major-changes-in-v4)
+
 
 Based on [react-unity-webgl](https://github.com/jeffreylanters/react-unity-webgl)
 
 ## Features
 
-📦 集成简单，无框架限制
-📩 支持 `WebApp` 与 `Unity` 双向通信和交互
-⏰ 全面的事件处理机制
-🧲 内置 `vue` 组件 (vue2/3)
+- 📦 集成简单，无框架限制
+- 📩 支持 `WebApp` 与 `Unity` 双向通信和交互
+- ⏰ 全面的事件处理机制
+- 🧲 内置 `vue` 组件 (`vue2/3`)
 
 ## Installation
 
@@ -118,10 +122,10 @@ unityContext.create(canvas: HTMLCanvasElement | string)
 
 | Property                 | Type    | Description                                                                           | Required |
 | ------------------------ | ------- | ------------------------------------------------------------------------------------- | -------- |
-| `loaderUrl`              | string  | Unity 资源加载器文件                                                                  | ✅       |
-| `dataUrl`                | string  | 包含资源数据和场景的文件                                                              | ✅       |
-| `frameworkUrl`           | string  | 包含运行时和插件代码的文件                                                            | ✅       |
-| `codeUrl`                | string  | 包含原生代码的 WebAssembly 二进制文件                                                 | ✅       |
+| `loaderUrl`              | string  | Unity 资源加载器文件                                                                  | ✅        |
+| `dataUrl`                | string  | 包含资源数据和场景的文件                                                              | ✅        |
+| `frameworkUrl`           | string  | 包含运行时和插件代码的文件                                                            | ✅        |
+| `codeUrl`                | string  | 包含原生代码的 WebAssembly 二进制文件                                                 | ✅        |
 | `streamingAssetsUrl`     | string  | 流媒体资源的 URL                                                                      | 可选     |
 | `memoryUrl`              | string  | 生成的框架文件的 URL                                                                  | 可选     |
 | `symbolsUrl`             | string  | 生成的 Unity 代码文件的 URL                                                           | 可选     |
@@ -328,6 +332,8 @@ public class WebGLPluginJS : MonoBehaviour
 - [键盘输入和焦点处理](https://docs.unity3d.com/cn/2023.2/Manual/webgl-input.html)
 - [调试 WebGL 构建并排除故障](https://docs.unity3d.com/cn/2023.2/Manual/webgl-debugging.html)
 - [WebGL 性能考虑因素](https://docs.unity3d.com/cn/2023.2/Manual/webgl-performance.html)
+
+
 
 ## License
 
