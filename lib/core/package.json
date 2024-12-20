@@ -1,6 +1,6 @@
 {
 	"name": "unity-webgl",
-	"version": "4.0.0",
+	"version": "4.0.1",
 	"description": "Unity-Webgl provides an easy solution for embedding Unity WebGL builds in your webApp or Vue.js project, with two-way communication between your webApp and Unity application with advanced API's.",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
@@ -40,14 +40,13 @@
 		"registry": "https://registry.npmjs.org/"
 	},
 	"keywords": [
-		"unity webgl",
 		"unity",
-		"webGL",
-		"unity3d",
+		"unity webgl",
 		"unity3d webgl",
+		"vue unity",
 		"unity player",
-		"unity3d player",
-		"vue unity"
+		"vue unity player",
+		"unity3d player"
 	],
 	"author": "Mariner <mengqing723@gmail.com>",
 	"license": "Apache-2.0",
