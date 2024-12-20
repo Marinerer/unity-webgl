@@ -1,5 +1,14 @@
 # unity-webgl
 
+## v4.0.2
+
+### &nbsp;&nbsp;&nbsp;🎉 Features
+
+- Add HTML, Vue2, and Vue3 examples for UnityWebgl &nbsp;-&nbsp; by **Mervin** in https://github.com/Marinerer/unity-webgl/issues/38 [<samp>(e2790)</samp>](https://github.com/Marinerer/unity-webgl/commit/e27906f)
+
+##### &nbsp;&nbsp;&nbsp;&nbsp;[View changes on GitHub](https://github.com/Marinerer/unity-webgl/compare/v4.0.1...v4.0.2)
+
+
 ## v4.0.1
 
 ### &nbsp;&nbsp;&nbsp;📝 Documentation
