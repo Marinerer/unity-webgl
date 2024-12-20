@@ -34,6 +34,25 @@
 		"access": "public",
 		"registry": "https://registry.npmjs.org/"
 	},
+	"changelogithub": {
+		"types": {
+			"feat": {
+				"title": "🎉 Features"
+			},
+			"fix": {
+				"title": "🐞 Bug Fixes"
+			},
+			"perf": {
+				"title": "🚀 Performance"
+			},
+			"docs": {
+				"title": "📝 Documentation"
+			},
+			"refactor": {
+				"title": "♻️ Code Refactoring"
+			}
+		}
+	},
 	"keywords": [],
 	"author": "Mariner <mengqing723@gmail.com>",
 	"license": "Apache-2.0",

@@ -1,0 +1,97 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  LOG_BRANCH: 'main'
+  LOG_FILE: 'CHANGELOG.md'
+  LOG_HEADER: "# unity-webgl\n"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: CI:test
+        run: |
+          pnpm run test --coverage
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: CI:Build
+        run: pnpm run build
+
+      - name: Publish package to npm
+        run: pnpm publish -r --filter unity-webgl --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}
+
+      - name: Release changelog -(0)
+        run: npx changelogithub
+        env:
+          GITHUB_TOKEN: ${{secrets.GH_RELEASE_TOKEN}}
+
+      - name: Get tag name -(1)
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          TAG_NAME=${GITHUB_REF#refs/tags/}
+          echo "Current TAG: ${TAG_NAME}"
+          # 保存 TAG_NAME 到环境变量
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+
+      - name: Generate changelog -(2)
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          git checkout "$LOG_BRANCH"
+          # 输出当前 changelog 内容
+          npx changelogithub --output __LOG.md
+          TAG_CONTENT=$(cat __LOG.md)
+          TAG_TITLE="## $TAG_NAME\n"
+          # 检查日志文件是否存在
+          if [ ! -f "$LOG_FILE" ]; then
+            echo "$LOG_HEADER" > "$LOG_FILE"
+          fi
+          # 拼接日志顶部内容
+          LOG_CONTENT="$LOG_HEADER\n$TAG_TITLE\n$TAG_CONTENT\n"
+          # 使用 echo 插入新内容，然后用 cat 追加剩余的内容（去掉第一行）
+          (echo -e "$LOG_CONTENT"; tail -n +2 "$LOG_FILE") > __temp_file && mv __temp_file "$LOG_FILE"
+
+      - name: Sync changelog -(3)
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add "$LOG_FILE"
+          git commit -m "chore: update changelog"
+          git push origin "$LOG_BRANCH"
+          echo "😍 changelog synced"
