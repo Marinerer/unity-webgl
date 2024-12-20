@@ -1,0 +1,33 @@
+{
+	"name": "components",
+	"private": true,
+	"version": "0.0.0",
+	"main": "dist/vue.js",
+	"types": "dist/vue.d.ts",
+	"scripts": {
+		"build": "node ../../scripts/build.mjs"
+	},
+	"buildOptions": [
+		{
+			"input": "src/vue.ts",
+			"filename": "dist/vue",
+			"name": "VueUnity",
+			"dts": false,
+			"external": [
+				"vue-demi",
+				"vue"
+			],
+			"globals": {
+				"vue": "Vue",
+				"vue-demi": "VueDemi"
+			}
+		}
+	],
+	"dependencies": {
+		"unity-webgl": "workspace:^",
+		"vue-demi": "latest"
+	},
+	"devDependencies": {
+		"vue": "^3.5.13"
+	}
+}
