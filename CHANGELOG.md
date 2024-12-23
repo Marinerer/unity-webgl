@@ -1,5 +1,18 @@
 # unity-webgl
 
+## v4.1.0
+
+### &nbsp;&nbsp;&nbsp;🎉 Features
+
+- Enhanced typed events and improved handling &nbsp;-&nbsp; by **Mariner** in https://github.com/Marinerer/unity-webgl/issues/39 [<samp>(9a054)</samp>](https://github.com/Marinerer/unity-webgl/commit/9a05409)
+
+### &nbsp;&nbsp;&nbsp;🐞 Bug Fixes
+
+- Update HTML and update Vue3 example &nbsp;-&nbsp; by **Mariner** [<samp>(65f1a)</samp>](https://github.com/Marinerer/unity-webgl/commit/65f1adf)
+
+##### &nbsp;&nbsp;&nbsp;&nbsp;[View changes on GitHub](https://github.com/Marinerer/unity-webgl/compare/v4.0.2...v4.1.0)
+
+
 ## v4.0.2
 
 ### &nbsp;&nbsp;&nbsp;🎉 Features
