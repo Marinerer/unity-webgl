@@ -1,4 +1,6 @@
 import { isBrowser } from './utils'
+import { UnityInstance } from './types'
+import type UnityWebgl from './index'
 
 interface EventListener {
 	(...args: any[]): void
@@ -7,10 +9,19 @@ interface EventListener {
 type EventListenerOptions = {
 	once?: boolean
 }
-type EventMap = Record<string, EventListener[]>
+type EventsMap = Record<string, EventListener[]>
+interface UnityEventMap {
+	beforeMount: (instance: UnityWebgl) => void
+	mounted: (instance: UnityWebgl, unityInstance: UnityInstance) => void
+	beforeUnmount: (instance: UnityWebgl) => void
+	unmounted: () => void
+	progress: (progress: number) => void
+	debug: (msg: string) => void
+	error: (error: string | Error) => void
+}
 
 export class UnityWebglEvent {
-	private _e: EventMap // event map
+	private _e: EventsMap // events map
 
 	constructor() {
 		this._e = {}
@@ -20,7 +31,7 @@ export class UnityWebglEvent {
 				if (!name.startsWith('unity:')) {
 					name = `unity:${name}`
 				}
-				this.emit.apply(this, [name, ...args])
+				this.emit.call(this, name, ...args)
 			}
 		}
 	}
@@ -31,7 +42,17 @@ export class UnityWebglEvent {
 	 * @param listener event listener
 	 * @param options event listener options
 	 */
-	on(name: string, listener: EventListener, options?: EventListenerOptions) {
+	on<K extends keyof UnityEventMap>(
+		name: K,
+		listener: UnityEventMap[K],
+		options?: EventListenerOptions
+	): this
+	on(name: string, listener: EventListener, options?: EventListenerOptions): this
+	on<K extends keyof UnityEventMap>(
+		name: string | K,
+		listener: EventListener | UnityEventMap[K],
+		options?: EventListenerOptions
+	) {
 		if (typeof listener !== 'function') {
 			throw new TypeError('listener must be a function')
 		}
@@ -59,7 +80,12 @@ export class UnityWebglEvent {
 	 * @param name event name
 	 * @param listener event listener
 	 */
-	off(name: string, listener?: EventListener) {
+	off<K extends keyof UnityEventMap>(name: K, listener: UnityEventMap[K]): this
+	off(name: string, listener: EventListener): this
+	off<K extends keyof UnityEventMap>(
+		name: string | K,
+		listener?: EventListener | UnityEventMap[K]
+	) {
 		if (!listener) {
 			delete this._e[name]
 		} else {
@@ -82,7 +108,7 @@ export class UnityWebglEvent {
 			return this
 		}
 
-		this._e[name].forEach((listener) => listener(...args))
+		this._e[name].forEach((listener) => listener.apply(this, args))
 		return this
 	}
 
@@ -114,6 +140,6 @@ export class UnityWebglEvent {
 		if (!name.startsWith('unity:')) {
 			name = `unity:${name}`
 		}
-		return this.off(name, listener)
+		return this.off(name, listener as EventListener)
 	}
 }
