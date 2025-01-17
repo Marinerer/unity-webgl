@@ -1,6 +1,6 @@
 import { UnityWebglEvent } from './event'
 import { unityLoader } from './loader'
-import { isBrowser, isObject, omit, queryCanvas } from './utils'
+import { isBrowser, isObject, omit, queryCanvas, log } from './utils'
 import { UnityConfig, UnityArguments, UnityInstance } from './types'
 
 type CanvasElementOrString = HTMLCanvasElement | string
@@ -59,7 +59,7 @@ class UnityWebgl extends UnityWebglEvent {
 		if (!isBrowser) return Promise.resolve()
 
 		if (this._unity && this._canvas && this._loader) {
-			console.warn('Unity instance already created')
+			log.warn('Unity instance already created')
 			return Promise.resolve()
 		}
 
@@ -110,7 +110,7 @@ class UnityWebgl extends UnityWebglEvent {
 	 */
 	sendMessage(objectName: string, methodName: string, value?: any) {
 		if (!this._unity) {
-			console.warn('Unable to Send Message while Unity is not Instantiated.')
+			log.warn('Unable to Send Message while Unity is not Instantiated.')
 			return this
 		}
 
@@ -135,7 +135,7 @@ class UnityWebgl extends UnityWebglEvent {
 	 */
 	requestPointerLock(): void {
 		if (!this._unity || !this._unity.Module.canvas) {
-			console.warn('Unable to requestPointerLock while Unity is not Instantiated.')
+			log.warn('Unable to requestPointerLock while Unity is not Instantiated.')
 			return
 		}
 		this._unity.Module.canvas.requestPointerLock()
@@ -149,7 +149,7 @@ class UnityWebgl extends UnityWebglEvent {
 	 */
 	takeScreenshot(dataType?: string, quality?: any): string | undefined {
 		if (!this._unity || !this._unity.Module.canvas) {
-			console.warn('Unable to take Screenshot while Unity is not Instantiated.')
+			log.warn('Unable to take Screenshot while Unity is not Instantiated.')
 			return
 		}
 
@@ -162,7 +162,7 @@ class UnityWebgl extends UnityWebglEvent {
 	 */
 	setFullscreen(enabled: boolean) {
 		if (!this._unity) {
-			console.warn('Unable to set Fullscreen while Unity is not Instantiated.')
+			log.warn('Unable to set Fullscreen while Unity is not Instantiated.')
 			return
 		}
 
@@ -174,7 +174,7 @@ class UnityWebgl extends UnityWebglEvent {
 	 */
 	unload(): Promise<void> {
 		if (!this._unity) {
-			console.warn('Unable to Quit Unity while Unity is not Instantiated.')
+			log.warn('Unable to Quit Unity while Unity is not Instantiated.')
 			return Promise.reject()
 		}
 		this.emit('beforeUnmount', this)
@@ -195,7 +195,7 @@ class UnityWebgl extends UnityWebglEvent {
 				this.emit('unmounted')
 			})
 			.catch((err) => {
-				console.error('Unable to Unload Unity')
+				log.error('Unable to Unload Unity')
 				this.emit('error', err)
 				throw err
 			})
@@ -211,7 +211,7 @@ class UnityWebgl extends UnityWebglEvent {
 	unsafe_unload(): Promise<void> {
 		try {
 			if (!this._unity || !this._unity.Module.canvas) {
-				console.warn('No Unity Instance found.')
+				log.warn('No Unity Instance found.')
 				return Promise.reject()
 			}
 			// Re-attaches the canvas to the body element of the document. This way it
