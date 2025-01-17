@@ -22,3 +22,11 @@ export function queryCanvas(canvas: string | HTMLCanvasElement): HTMLCanvasEleme
 	}
 	return document.querySelector(canvas)
 }
+
+export const log = (() => {
+	const prefix = '[unity-webgl]'
+	const _log = (...args: any[]) => console.log(prefix, ...args)
+	_log.warn = (...args: any[]) => console.warn(prefix, ...args)
+	_log.error = (...args: any[]) => console.error(prefix, ...args)
+	return _log
+})()

@@ -6,6 +6,8 @@
 import UnityWebgl from '../lib/core/src/index'
 import 'jest-canvas-mock'
 
+const logPrefix = '[unity-webgl]'
+
 // mock UnityInstance methods
 const mockLoaderResult = jest.fn()
 const mockSendMessage = jest.fn()
@@ -133,6 +135,7 @@ describe('UnityWebgl', () => {
 			unityWebgl.sendMessage('ObjectName', 'MethodName')
 
 			expect(consoleSpy).toHaveBeenCalledWith(
+				logPrefix,
 				'Unable to Send Message while Unity is not Instantiated.'
 			)
 
@@ -159,6 +162,7 @@ describe('UnityWebgl', () => {
 			unityWebgl.requestPointerLock()
 
 			expect(consoleSpy).toHaveBeenCalledWith(
+				logPrefix,
 				'Unable to requestPointerLock while Unity is not Instantiated.'
 			)
 
@@ -186,6 +190,7 @@ describe('UnityWebgl', () => {
 			unityWebgl.takeScreenshot()
 
 			expect(consoleSpy).toHaveBeenCalledWith(
+				logPrefix,
 				'Unable to take Screenshot while Unity is not Instantiated.'
 			)
 			consoleSpy.mockRestore()
@@ -213,6 +218,7 @@ describe('UnityWebgl', () => {
 			unityWebgl.setFullscreen(true)
 
 			expect(consoleSpy).toHaveBeenCalledWith(
+				logPrefix,
 				'Unable to set Fullscreen while Unity is not Instantiated.'
 			)
 

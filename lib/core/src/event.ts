@@ -104,7 +104,7 @@ export class UnityWebglEvent {
 	 */
 	emit(name: string, ...args: any[]) {
 		if (!this._e[name]) {
-			console.warn(`No listener for event ${name}`)
+			// log.warn(`No listener for event ${name}`)
 			return this
 		}
 
