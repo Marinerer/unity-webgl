@@ -1,5 +1,14 @@
 # unity-webgl
 
+## v4.2.0
+
+### &nbsp;&nbsp;&nbsp;♻️ Code Refactoring
+
+- Replace console.log with custom & unique log structure &nbsp;-&nbsp; by **Mariner** in https://github.com/Marinerer/unity-webgl/issues/40 [<samp>(f709e)</samp>](https://github.com/Marinerer/unity-webgl/commit/f709e49)
+
+##### &nbsp;&nbsp;&nbsp;&nbsp;[View changes on GitHub](https://github.com/Marinerer/unity-webgl/compare/v4.1.0...v4.2.0)
+
+
 ## v4.1.0
 
 ### &nbsp;&nbsp;&nbsp;🎉 Features
