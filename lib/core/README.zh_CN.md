@@ -12,9 +12,8 @@
 `unity-webgl` 提供了一个简单的解决方案，用于将 `Unity WebGL` 构建嵌入到 Web 应用程序中，同时为 Unity 和 WebApp 应用之间的双向通信和交互提供 API。
 
 > 🚨 提醒
-> 
+>
 > `v4.x` 版本进行了较大更新，API 不兼容 `v3.x`及之前版本。升级请参考 [变更信息](https://github.com/Marinerer/unity-webgl/wiki/Major-changes-in-v4)
-
 
 Based on [react-unity-webgl](https://github.com/jeffreylanters/react-unity-webgl)
 
@@ -45,7 +44,7 @@ https://cdn.jsdelivr.net/npm/unity-webgl/dist/index.min.js
 - [vue3 Demo](https://stackblitz.com/edit/unity-webgl-v4-vue3-demo)
 
 > 🚨 提醒：  
-> 仅在 `Unity` 实例成功创建后（触发 `mounted` 事件时）才能进行 Web 应用程序的通信和交互。
+> 仅在 `UnityInstance` 渲染完成后（触发 `mounted` 事件时）才能进行 Web 应用程序的通信和交互。
 > 建议在页面打开时添加加载进度条。
 
 ```javascript
@@ -61,7 +60,7 @@ const unityContext = new UnityWebgl('#canvas', {
 unityContext
 	.on('progress', (progress) => console.log('Loaded: ', progress))
 	.on('mounted', () => {
-		// ⚠️ unity实例已创建，可与unity侧进行通信
+		// ⚠️ UnityInstance 已创建，可与unity侧进行通信
 		unityContext.sendMessage('GameObject', 'ReceiveRole', 'Tanya')
 	})
 
@@ -109,7 +108,7 @@ new UnityWebgl(canvas: HTMLCanvasElement | string, config?:UnityConfig)
 // or
 
 const unityContext = new UnityWebgl(config: UnityConfig)
-unityContext.create(canvas: HTMLCanvasElement | string)
+unityContext.render(canvas: HTMLCanvasElement | string)
 ```
 
 - `canvas` : 渲染Unity的画布元素或选择器。
@@ -121,10 +120,10 @@ unityContext.create(canvas: HTMLCanvasElement | string)
 
 | Property                 | Type    | Description                                                                           | Required |
 | ------------------------ | ------- | ------------------------------------------------------------------------------------- | -------- |
-| `loaderUrl`              | string  | Unity 资源加载器文件                                                                  | ✅        |
-| `dataUrl`                | string  | 包含资源数据和场景的文件                                                              | ✅        |
-| `frameworkUrl`           | string  | 包含运行时和插件代码的文件                                                            | ✅        |
-| `codeUrl`                | string  | 包含原生代码的 WebAssembly 二进制文件                                                 | ✅        |
+| `loaderUrl`              | string  | Unity 资源加载器文件                                                                  | ✅       |
+| `dataUrl`                | string  | 包含资源数据和场景的文件                                                              | ✅       |
+| `frameworkUrl`           | string  | 包含运行时和插件代码的文件                                                            | ✅       |
+| `codeUrl`                | string  | 包含原生代码的 WebAssembly 二进制文件                                                 | ✅       |
 | `streamingAssetsUrl`     | string  | 流媒体资源的 URL                                                                      | 可选     |
 | `memoryUrl`              | string  | 生成的框架文件的 URL                                                                  | 可选     |
 | `symbolsUrl`             | string  | 生成的 Unity 代码文件的 URL                                                           | 可选     |
@@ -143,14 +142,14 @@ unityContext.create(canvas: HTMLCanvasElement | string)
 
 **Instance methods :**
 
-#### ⭐️ `create(canvas: HTMLCanvasElement | string): void;`
+#### ⭐️ `render(canvas: HTMLCanvasElement | string): void;`
 
-在指定画布上创建 Unity WebGL 实例。
+在指定画布上渲染 Unity WebGL 实例资源。
 
 - `canvas` : canvas画布元素
 
 ```javascript
-await unityContext.create('#canvas')
+await unityContext.render('#canvas')
 ```
 
 #### ⭐️ `unload(): Promise<void>;`
@@ -253,10 +252,10 @@ Unity 实例从创建到销毁过程中触发的事件。
 
 | event name                    | description             |
 | ----------------------------- | ----------------------- |
-| `beforeMount(unityContext)`   | 创建 Unity 实例之前触发 |
-| `mounted(unityContext)`       | 创建 Unity 实例后触发   |
-| `beforeUnmount(unityContext)` | 卸载 Unity 实例之前触发 |
-| `unmounted()`                 | 卸载 Unity 实例后触发   |
+| `beforeMount(unityContext)`   | 渲染 Unity 实例资源之前 |
+| `mounted(unityContext)`       | 渲染 Unity 实例资源之后 |
+| `beforeUnmount(unityContext)` | 卸载 Unity 实例资源之前 |
+| `unmounted()`                 | 卸载 Unity 实例资源之后 |
 | `progress(val: number)`       | unity 资源加载进度更新  |
 | `error(err: Event\|string)`   | 发生错误                |
 | `debug(msg: string)`          | 来自 Unity 的调试消息   |
@@ -332,11 +331,9 @@ public class WebGLPluginJS : MonoBehaviour
 - [调试 WebGL 构建并排除故障](https://docs.unity3d.com/cn/2023.2/Manual/webgl-debugging.html)
 - [WebGL 性能考虑因素](https://docs.unity3d.com/cn/2023.2/Manual/webgl-performance.html)
 
-
-
 ## License
 
-MIT License
+Apache-2.0 License
 
 ## Contributing
 

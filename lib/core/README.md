@@ -12,7 +12,7 @@
 `unity-webgl` provides an easy solution for embedding `Unity WebGL` builds in your web applications, with two-way communication and interaction between your webApp and Unity application with advanced API's.
 
 > 🚨 Reminder
-> 
+>
 > `v4.x` has been updated significantly and the API is not compatible with `v3.x` and earlier versions. For upgrades, please refer to [Changelogs](https://github.com/Marinerer/unity-webgl/wiki/Major-changes-in-v4)
 
 Based on [react-unity-webgl](https://github.com/jeffreylanters/react-unity-webgl)
@@ -22,7 +22,7 @@ Based on [react-unity-webgl](https://github.com/jeffreylanters/react-unity-webgl
 - 📦 Easy integration, framework-agnostic
 - 📩 Bidirectional communication between WebApp and Unity
 - ⏰ Comprehensive event handling mechanism
-- 🧲 Built-in Vue components (vue2/3)
+- 🧲 Built-in Vue components (`vue2/3`)
 
 ## Installation
 
@@ -44,7 +44,7 @@ npm install unity-webgl
 - [vue3 Demo](https://stackblitz.com/edit/unity-webgl-v4-vue3-demo)
 
 > 🚨 **Important:**  
-> Communication and interaction with the web application are only possible after the Unity instance is successfully created (when the `mounted` event is triggered).  
+> Communication and interaction with the web application are only possible after the Unity instance is successfully rendered (when the `mounted` event is triggered).  
 > Recommended to include a loading progress bar when opening the page.
 
 ```javascript
@@ -60,7 +60,7 @@ const unityContext = new UnityWebgl('#canvas', {
 unityContext
 	.on('progress', (progress) => console.log('Loaded: ', progress))
 	.on('mounted', () => {
-		// ⚠️ Unity instance created, ready for communication
+		// ⚠️ UnityInstance rendered, ready for communication
 		unityContext.sendMessage('GameObject', 'ReceiveRole', 'Tanya')
 	})
 
@@ -108,7 +108,7 @@ new UnityWebgl(canvas: HTMLCanvasElement | string, config?:UnityConfig)
 // or
 
 const unityContext = new UnityWebgl(config: UnityConfig)
-unityContext.create(canvas: HTMLCanvasElement | string)
+unityContext.render(canvas: HTMLCanvasElement | string)
 ```
 
 - `canvas` : Render Unity canvas elements or selectors.
@@ -120,10 +120,10 @@ Initializes the Unity application's configuration items.
 
 | Property                 | Type    | Description                                                                                        | Required |
 | ------------------------ | ------- | -------------------------------------------------------------------------------------------------- | -------- |
-| `loaderUrl`              | string  | Unity resource loader file                                                                         | ✅        |
-| `dataUrl`                | string  | File containing resource data and scenes                                                           | ✅        |
-| `frameworkUrl`           | string  | File with runtime and plugin code                                                                  | ✅        |
-| `codeUrl`                | string  | WebAssembly binary file with native code                                                           | ✅        |
+| `loaderUrl`              | string  | Unity resource loader file                                                                         | ✅       |
+| `dataUrl`                | string  | File containing resource data and scenes                                                           | ✅       |
+| `frameworkUrl`           | string  | File with runtime and plugin code                                                                  | ✅       |
+| `codeUrl`                | string  | WebAssembly binary file with native code                                                           | ✅       |
 | `streamingAssetsUrl`     | string  | URL for streaming resources                                                                        | Optional |
 | `memoryUrl`              | string  | URL for generated framework files                                                                  | Optional |
 | `symbolsUrl`             | string  | URL for generated Unity code files                                                                 | Optional |
@@ -142,14 +142,14 @@ Initializes the Unity application's configuration items.
 
 **Instance methods :**
 
-#### ⭐️ `create(canvas: HTMLCanvasElement | string): void;`
+#### ⭐️ `render(canvas: HTMLCanvasElement | string): void;`
 
-Create a Unity WebGL instance on the specified canvas.
+Renders UnityInstance into target html canvas element.
 
 - `canvas` : canvas element
 
 ```javascript
-await unityContext.create('#canvas')
+await unityContext.render('#canvas')
 ```
 
 #### ⭐️ `unload(): Promise<void>;`
@@ -248,15 +248,15 @@ window.dispatchUnityEvent('GameStarted', 3)
 
 ### Events
 
-| Event Name      | Description                              |
-| --------------- | ---------------------------------------- |
-| `beforeMount`   | Triggered before Unity instance creation |
-| `mounted`       | Triggered after Unity instance creation  |
-| `beforeUnmount` | Triggered before Unity instance unload   |
-| `unmounted`     | Triggered after Unity instance unload    |
-| `progress`      | Unity resource loading progress          |
-| `error`         | Error events                             |
-| `debug`         | Debug messages from Unity                |
+| Event Name      | Description                                       |
+| --------------- | ------------------------------------------------- |
+| `beforeMount`   | Before rendering UnityInstance to Canvas Element. |
+| `mounted`       | After rendering UnityInstance to Canvas Element.  |
+| `beforeUnmount` | Before UnityInstance unload                       |
+| `unmounted`     | After UnityInstance unload                        |
+| `progress`      | Unity resource loading progress                   |
+| `error`         | Error events                                      |
+| `debug`         | Debug messages from Unity                         |
 
 ## Unity-JavaScript Communication
 
