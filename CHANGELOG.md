@@ -1,5 +1,14 @@
 # unity-webgl
 
+## v4.3.0
+
+### &nbsp;&nbsp;&nbsp;♻️ Code Refactoring
+
+- Rename create to render &nbsp;-&nbsp; by **Mariner** in https://github.com/Marinerer/unity-webgl/issues/41 [<samp>(0fade)</samp>](https://github.com/Marinerer/unity-webgl/commit/0fadef3)
+
+##### &nbsp;&nbsp;&nbsp;&nbsp;[View changes on GitHub](https://github.com/Marinerer/unity-webgl/compare/v4.2.0...v4.3.0)
+
+
 ## v4.2.0
 
 ### &nbsp;&nbsp;&nbsp;♻️ Code Refactoring
