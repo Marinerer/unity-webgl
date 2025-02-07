@@ -53,7 +53,7 @@ export default defineComponent({
 
 		onMounted(() => {
 			if (canvas.value) {
-				props.unity?.create(canvas.value)
+				props.unity?.render(canvas.value)
 			}
 		})
 		onBeforeUnmount(() => {

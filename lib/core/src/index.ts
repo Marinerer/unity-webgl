@@ -47,19 +47,26 @@ class UnityWebgl extends UnityWebglEvent {
 
 		// canvas
 		if (typeof canvas === 'string' || canvas instanceof HTMLCanvasElement) {
-			this.create(canvas)
+			this.render(canvas)
 		}
 	}
 
 	/**
-	 * Creating Unity Instance
-	 * @param canvas The target html canvas element.
+	 * @deprecated Use `render()` instead.
 	 */
 	create(canvas: CanvasElementOrString): Promise<void> {
+		return this.render(canvas)
+	}
+
+	/**
+	 * Renders the UnityInstance into the target html canvas element.
+	 * @param canvas The target html canvas element.
+	 */
+	render(canvas: CanvasElementOrString): Promise<void> {
 		if (!isBrowser) return Promise.resolve()
 
 		if (this._unity && this._canvas && this._loader) {
-			log.warn('Unity instance already created')
+			log.warn('UnityInstance already created')
 			return Promise.resolve()
 		}
 
@@ -71,7 +78,7 @@ class UnityWebgl extends UnityWebglEvent {
 				}
 				this._canvas = $canvas
 				const ctx = this
-				// Create Unity instantiation Arguments
+				// Create UnityInstance Arguments
 				const unityArgs = createUnityArgs(this, this._config)
 
 				this.emit('beforeMount', this)
@@ -123,7 +130,7 @@ class UnityWebgl extends UnityWebglEvent {
 		return this
 	}
 	/**
-	 * @deprecated Use sendMessage instead.
+	 * @deprecated Use `sendMessage()` instead.
 	 */
 	send(objectName: string, methodName: string, value?: any) {
 		return this.sendMessage(objectName, methodName, value)
@@ -211,7 +218,7 @@ class UnityWebgl extends UnityWebglEvent {
 	unsafe_unload(): Promise<void> {
 		try {
 			if (!this._unity || !this._unity.Module.canvas) {
-				log.warn('No Unity Instance found.')
+				log.warn('No UnityInstance found.')
 				return Promise.reject()
 			}
 			// Re-attaches the canvas to the body element of the document. This way it
