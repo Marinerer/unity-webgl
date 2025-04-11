@@ -1,5 +1,14 @@
 # unity-webgl
 
+## v4.4.0
+
+### &nbsp;&nbsp;&nbsp;♻️ Code Refactoring
+
+- **types**: Refactor some type definitions for better organization &nbsp;-&nbsp; by **Mariner** in https://github.com/Marinerer/unity-webgl/issues/44 [<samp>(9410d)</samp>](https://github.com/Marinerer/unity-webgl/commit/9410d4d)
+
+##### &nbsp;&nbsp;&nbsp;&nbsp;[View changes on GitHub](https://github.com/Marinerer/unity-webgl/compare/v4.3.0...v4.4.0)
+
+
 ## v4.3.0
 
 ### &nbsp;&nbsp;&nbsp;♻️ Code Refactoring
