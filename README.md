@@ -43,7 +43,8 @@ npm install unity-webgl
 - [Live Demo](https://stackblitz.com/edit/unity-webgl-v4-demo)
 - [vue3 Demo](https://stackblitz.com/edit/unity-webgl-v4-vue3-demo)
 
-> 🚨 **Important:**  
+> [!IMPORTANT]
+>
 > Communication and interaction with the web application are only possible after the Unity instance is successfully rendered (when the `mounted` event is triggered).  
 > Recommended to include a loading progress bar when opening the page.
 
@@ -134,9 +135,9 @@ Initializes the Unity application's configuration items.
 | `webglContextAttributes`     | object            | WebGL rendering context options. @see[WebGLRenderingContext][webglContextAttributes-url]           | Optional |
 | `devicePixelRatio`           | number            | Canvas device pixel ratio. @see[devicePixelRatio][devicePixelRatio-url]                            | Optional |
 | `matchWebGLToCanvasSize`     | boolean           | Disable automatic WebGL canvas size sync. @see[matchWebGLToCanvasSize][matchWebGLToCanvasSize-url] | Optional |
-| `autoSyncPersistentDataPath` | boolean           | Enables or disables auto synchronization of the persistent data path.                              | 可选     |
-| `disabledCanvasEvents`       | string[]          | Overwrites the default disabled canvas events.                                                     | 可选     |
-| `cacheControl`               | `(url) => string` | The Cache Control API                                                                              | 可选     |
+| `autoSyncPersistentDataPath` | boolean           | Enables or disables auto synchronization of the persistent data path.                              | Optional |
+| `disabledCanvasEvents`       | string[]          | Overwrites the default disabled canvas events.                                                     | Optional |
+| `cacheControl`               | `(url) => string` | The Cache Control API                                                                              | Optional |
 
 [devicePixelRatio-url]: https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio
 [matchWebGLToCanvasSize-url]: https://issuetracker.unity3d.com/issues/webgl-builds-dont-allow-separate-control-on-canvas-render-buffer-size

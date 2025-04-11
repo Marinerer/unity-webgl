@@ -43,7 +43,8 @@ https://cdn.jsdelivr.net/npm/unity-webgl/dist/index.min.js
 - [Live Demo](https://stackblitz.com/edit/unity-webgl-v4-demo)
 - [vue3 Demo](https://stackblitz.com/edit/unity-webgl-v4-vue3-demo)
 
-> 🚨 提醒：  
+> [!IMPORTANT]
+>
 > 仅在 `UnityInstance` 渲染完成后（触发 `mounted` 事件时）才能进行 Web 应用程序的通信和交互。
 > 建议在页面打开时添加加载进度条。
 
