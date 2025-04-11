@@ -1,5 +1,5 @@
+import { UnityInstance } from './types/unity-instance'
 import { isBrowser } from './utils'
-import { UnityInstance } from './types'
 import type UnityWebgl from './index'
 
 interface EventListener {
