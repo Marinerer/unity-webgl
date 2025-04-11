@@ -118,21 +118,25 @@ unityContext.render(canvas: HTMLCanvasElement | string)
 
 初始化 Unity 应用程序的配置项。
 
-| Property                 | Type    | Description                                                                           | Required |
-| ------------------------ | ------- | ------------------------------------------------------------------------------------- | -------- |
-| `loaderUrl`              | string  | Unity 资源加载器文件                                                                  | ✅       |
-| `dataUrl`                | string  | 包含资源数据和场景的文件                                                              | ✅       |
-| `frameworkUrl`           | string  | 包含运行时和插件代码的文件                                                            | ✅       |
-| `codeUrl`                | string  | 包含原生代码的 WebAssembly 二进制文件                                                 | ✅       |
-| `streamingAssetsUrl`     | string  | 流媒体资源的 URL                                                                      | 可选     |
-| `memoryUrl`              | string  | 生成的框架文件的 URL                                                                  | 可选     |
-| `symbolsUrl`             | string  | 生成的 Unity 代码文件的 URL                                                           | 可选     |
-| `companyName`            | string  | 元数据：公司名称                                                                      | 可选     |
-| `productName`            | string  | 元数据：产品名称                                                                      | 可选     |
-| `productVersion`         | string  | 元数据：产品版本                                                                      | 可选     |
-| `devicePixelRatio`       | number  | 画布设备像素比率. @see[devicePixelRatio][devicePixelRatio-url]                        | 可选     |
-| `matchWebGLToCanvasSize` | boolean | 禁用 WebGL 画布大小自动同步. @see[matchWebGLToCanvasSize][matchWebGLToCanvasSize-url] | 可选     |
-| `webglContextAttributes` | object  | WebGL 渲染上下文选项. @see[WebGLRenderingContext][webglContextAttributes-url]         | 可选     |
+| Property                     | Type              | Description                                                                             | Required |
+| ---------------------------- | ----------------- | --------------------------------------------------------------------------------------- | -------- |
+| `loaderUrl`                  | string            | Unity 资源加载器文件                                                                    | ✅       |
+| `dataUrl`                    | string            | 包含资源数据和场景的文件                                                                | ✅       |
+| `frameworkUrl`               | string            | 包含运行时和插件代码的文件                                                              | ✅       |
+| `codeUrl`                    | string            | 包含原生代码的 WebAssembly 二进制文件                                                   | ✅       |
+| `streamingAssetsUrl`         | string            | 流媒体资源的 URL                                                                        | 可选     |
+| `memoryUrl`                  | string            | Unity生成的框架文件的 URL                                                               | 可选     |
+| `symbolsUrl`                 | string            | Unity生成的代码文件 URL                                                                 | 可选     |
+| `workerUrl`                  | string            | Unity生成的web worker文件URL                                                            | 可选     |
+| `companyName`                | string            | 元数据                                                                                  | 可选     |
+| `productName`                | string            | 元数据                                                                                  | 可选     |
+| `productVersion`             | string            | 元数据                                                                                  | 可选     |
+| `webglContextAttributes`     | object            | WebGL 渲染上下文选项. @see[WebGLRenderingContext][webglContextAttributes-url]           | 可选     |
+| `devicePixelRatio`           | number            | canvas设备像素比率. @see[devicePixelRatio][devicePixelRatio-url]                        | 可选     |
+| `matchWebGLToCanvasSize`     | boolean           | 禁用 WebGL canvas大小自动同步. @see[matchWebGLToCanvasSize][matchWebGLToCanvasSize-url] | 可选     |
+| `autoSyncPersistentDataPath` | boolean           | 启用/禁用持久数据自动同步                                                               | 可选     |
+| `disabledCanvasEvents`       | string[]          | 禁用一些默认canvas事件                                                                  | 可选     |
+| `cacheControl`               | `(url) => string` | 缓存控制 API                                                                            | 可选     |
 
 [devicePixelRatio-url]: https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio
 [matchWebGLToCanvasSize-url]: https://issuetracker.unity3d.com/issues/webgl-builds-dont-allow-separate-control-on-canvas-render-buffer-size
@@ -144,9 +148,9 @@ unityContext.render(canvas: HTMLCanvasElement | string)
 
 #### ⭐️ `render(canvas: HTMLCanvasElement | string): void;`
 
-在指定画布上渲染 Unity WebGL 实例资源。
+在指定canvas上渲染 Unity WebGL 实例资源。
 
-- `canvas` : canvas画布元素
+- `canvas` : canvas元素
 
 ```javascript
 await unityContext.render('#canvas')
@@ -174,11 +178,11 @@ unityContext.sendMessage('GameObject', 'gameStart', { role: 'Tanya' })
 
 #### `requestPointerLock(): void;`
 
-请求锁定 Unity 画布的指针。
+请求锁定 Unity canvas的指针。
 
 #### `takeScreenshot(dataType?: string, quality?: any): string | undefined;`
 
-对 Unity 画布进行屏幕截图并返回包含图像数据的数据 URL。
+对 Unity canvas进行屏幕截图并返回包含图像数据的数据 URL。
 
 - `dataType`: 图像数据的类型
 - `quality`: 图像的质量
@@ -217,9 +221,9 @@ unityContext.off('progress', listener)
 
 **Unity Communication methods :**
 
-#### `addUnityListener(name: string, listener: EventListener, options?: { once?: boolean }): this;`
+#### ⭐️ `addUnityListener(name: string, listener: EventListener, options?: { once?: boolean }): this;`
 
-注册特定监听器供 Unity 端调用。
+注册监听器供 Unity 端调用。
 
 ```javascript
 unityContext.addUnityListener('GameStarted', (level) => {
@@ -232,15 +236,15 @@ window.dispatchUnityEvent('GameStarted', 3)
 
 #### `removeUnityListener(name: string, listener?: EventListener): this;`
 
-移除注册的监听器。
+移除供Unity端注册的监听器。
 
 ```javascript
 unityContext.removeUnityListener('GameStarted', listener)
 ```
 
-### `window.dispatchUnityEvent(name: string, ...args: any[])`
+### ⭐️ `window.dispatchUnityEvent(name: string, ...args: any[])`
 
-在 Unity 端派发注册的监听器的方式。（在 unity 中调用 JS 的方法）
+在 Unity 端触发注册的监听器的方式。（在 unity 中调用 JS 的方法）
 
 ```javascript
 window.dispatchUnityEvent('GameStarted', 3)

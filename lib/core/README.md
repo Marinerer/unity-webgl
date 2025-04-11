@@ -118,21 +118,25 @@ unityContext.render(canvas: HTMLCanvasElement | string)
 
 Initializes the Unity application's configuration items.
 
-| Property                 | Type    | Description                                                                                        | Required |
-| ------------------------ | ------- | -------------------------------------------------------------------------------------------------- | -------- |
-| `loaderUrl`              | string  | Unity resource loader file                                                                         | ✅       |
-| `dataUrl`                | string  | File containing resource data and scenes                                                           | ✅       |
-| `frameworkUrl`           | string  | File with runtime and plugin code                                                                  | ✅       |
-| `codeUrl`                | string  | WebAssembly binary file with native code                                                           | ✅       |
-| `streamingAssetsUrl`     | string  | URL for streaming resources                                                                        | Optional |
-| `memoryUrl`              | string  | URL for generated framework files                                                                  | Optional |
-| `symbolsUrl`             | string  | URL for generated Unity code files                                                                 | Optional |
-| `companyName`            | string  | Metadata: Company name                                                                             | Optional |
-| `productName`            | string  | Metadata: Product name                                                                             | Optional |
-| `productVersion`         | string  | Metadata: Product version                                                                          | Optional |
-| `devicePixelRatio`       | number  | Canvas device pixel ratio. @see[devicePixelRatio][devicePixelRatio-url]                            | Optional |
-| `matchWebGLToCanvasSize` | boolean | Disable automatic WebGL canvas size sync. @see[matchWebGLToCanvasSize][matchWebGLToCanvasSize-url] | Optional |
-| `webglContextAttributes` | object  | WebGL rendering context options. @see[WebGLRenderingContext][webglContextAttributes-url]           | Optional |
+| Property                     | Type              | Description                                                                                        | Required |
+| ---------------------------- | ----------------- | -------------------------------------------------------------------------------------------------- | -------- |
+| `loaderUrl`                  | string            | Unity resource loader file                                                                         | ✅       |
+| `dataUrl`                    | string            | File containing resource data and scenes                                                           | ✅       |
+| `frameworkUrl`               | string            | File with runtime and plugin code                                                                  | ✅       |
+| `codeUrl`                    | string            | WebAssembly binary file with native code                                                           | ✅       |
+| `streamingAssetsUrl`         | string            | URL for streaming resources                                                                        | Optional |
+| `memoryUrl`                  | string            | URL for generated framework files                                                                  | Optional |
+| `symbolsUrl`                 | string            | URL for generated Unity code files                                                                 | Optional |
+| `workerUrl`                  | string            | URL for generated Unity web worker files                                                           | Optional |
+| `companyName`                | string            | Metadata: Company name                                                                             | Optional |
+| `productName`                | string            | Metadata: Product name                                                                             | Optional |
+| `productVersion`             | string            | Metadata: Product version                                                                          | Optional |
+| `webglContextAttributes`     | object            | WebGL rendering context options. @see[WebGLRenderingContext][webglContextAttributes-url]           | Optional |
+| `devicePixelRatio`           | number            | Canvas device pixel ratio. @see[devicePixelRatio][devicePixelRatio-url]                            | Optional |
+| `matchWebGLToCanvasSize`     | boolean           | Disable automatic WebGL canvas size sync. @see[matchWebGLToCanvasSize][matchWebGLToCanvasSize-url] | Optional |
+| `autoSyncPersistentDataPath` | boolean           | Enables or disables auto synchronization of the persistent data path.                              | 可选     |
+| `disabledCanvasEvents`       | string[]          | Overwrites the default disabled canvas events.                                                     | 可选     |
+| `cacheControl`               | `(url) => string` | The Cache Control API                                                                              | 可选     |
 
 [devicePixelRatio-url]: https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio
 [matchWebGLToCanvasSize-url]: https://issuetracker.unity3d.com/issues/webgl-builds-dont-allow-separate-control-on-canvas-render-buffer-size
@@ -217,7 +221,7 @@ unityContext.off('progress', listener)
 
 **Unity Communication methods :**
 
-#### `addUnityListener(name: string, listener: EventListener, options?: { once?: boolean }): this;`
+#### ⭐️ `addUnityListener(name: string, listener: EventListener, options?: { once?: boolean }): this;`
 
 Register a specific listener for Unity to call.
 
@@ -238,7 +242,7 @@ Remove registered listeners.
 unityContext.removeUnityListener('GameStarted', listener)
 ```
 
-### `window.dispatchUnityEvent(name: string, ...args: any[])`
+### ⭐️ `window.dispatchUnityEvent(name: string, ...args: any[])`
 
 The way to dispatch a registered listener on the Unity side. (Calling JS methods in unity)
 

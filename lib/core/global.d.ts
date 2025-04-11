@@ -1,4 +1,5 @@
-import { UnityArguments, UnityInstance } from './types'
+import { UnityArguments } from './src/types/unity-arguments'
+import { UnityInstance } from './src/types/unity-instance'
 
 declare global {
 	/**
@@ -38,5 +39,3 @@ declare global {
 		dispatchUnityEvent: typeof dispatchUnityEvent
 	}
 }
-
-export {}

@@ -1,7 +1,9 @@
 import { UnityWebglEvent } from './event'
 import { unityLoader } from './loader'
 import { isBrowser, isObject, omit, queryCanvas, log } from './utils'
-import { UnityConfig, UnityArguments, UnityInstance } from './types'
+import { UnityArguments } from './types/unity-arguments'
+import { UnityInstance } from './types/unity-instance'
+import { UnityConfig } from './types/unity-config'
 
 type CanvasElementOrString = HTMLCanvasElement | string
 
@@ -237,4 +239,4 @@ class UnityWebgl extends UnityWebglEvent {
 }
 
 export default UnityWebgl
-export * from './types'
+export type { UnityArguments, UnityConfig, UnityInstance }
