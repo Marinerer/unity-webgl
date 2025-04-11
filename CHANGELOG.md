@@ -1,5 +1,14 @@
 # unity-webgl
 
+## v4.4.1
+
+### &nbsp;&nbsp;&nbsp;📝 Documentation
+
+- Update README &nbsp;-&nbsp; by **Mariner** [<samp>(14af5)</samp>](https://github.com/Marinerer/unity-webgl/commit/14af54a)
+
+##### &nbsp;&nbsp;&nbsp;&nbsp;[View changes on GitHub](https://github.com/Marinerer/unity-webgl/compare/v4.4.0...v4.4.1)
+
+
 ## v4.4.0
 
 ### &nbsp;&nbsp;&nbsp;♻️ Code Refactoring
