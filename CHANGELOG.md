@@ -1,5 +1,14 @@
 # unity-webgl
 
+## v4.4.2
+
+### &nbsp;&nbsp;&nbsp;🐞 Bug Fixes
+
+- **types**: Include 'src' directory in package files &nbsp;-&nbsp; by **Mervin** [<samp>(db626)</samp>](https://github.com/Marinerer/unity-webgl/commit/db6269a)
+
+##### &nbsp;&nbsp;&nbsp;&nbsp;[View changes on GitHub](https://github.com/Marinerer/unity-webgl/compare/v4.4.1...v4.4.2)
+
+
 ## v4.4.1
 
 ### &nbsp;&nbsp;&nbsp;📝 Documentation
