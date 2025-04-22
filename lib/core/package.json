@@ -24,6 +24,7 @@
 	},
 	"files": [
 		"dist",
+		"src",
 		"global.d.ts"
 	],
 	"scripts": {
