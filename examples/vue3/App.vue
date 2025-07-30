@@ -13,10 +13,17 @@ const unityContext = new UnityWebgl({
   codeUrl:
     'https://static-huariot-com.oss-cn-hangzhou.aliyuncs.com/uploads/17343457791501843/demo.wasm',
 });
-
+/** 
+https://bim-static.zaiont.com/test/tj_subway/Build/tj_subway.loader.js
+https://bim-static.zaiont.com/test/tj_subway/Build/tj_subway.data.gz
+https://bim-static.zaiont.com/test/tj_subway/Build/tj_subway.framework.js.gz
+https://bim-static.zaiont.com/test/tj_subway/Build/tj_subway.wasm.gz
+*/
 unityContext
   .on('progress', (p) => console.log('loading :', p))
   .on('mounted', () => console.log('unity mounted ...'))
+  .on('beforeUnmount', () => console.log('unity beforeUnmount ...'))
+  .on('unmounted', () => console.log('unity unmounted ...'))
   .on('debug', (msg) => console.log('unity debug', msg));
 
 unityContext.addUnityListener('gameStart', (msg) => {
