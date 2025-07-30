@@ -199,9 +199,9 @@ class UnityWebgl extends UnityWebglEvent {
 			.then(() => {
 				this._unity = null
 				this._canvas = null
-				this.clear()
 
 				this.emit('unmounted')
+				this.clear()
 			})
 			.catch((err) => {
 				log.error('Unable to Unload Unity')
