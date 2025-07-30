@@ -1,5 +1,14 @@
 # unity-webgl
 
+## v4.4.3
+
+### &nbsp;&nbsp;&nbsp;🐞 Bug Fixes
+
+- **core**: Move clear() method to unmount Unity &nbsp;-&nbsp; by **Mariner** in https://github.com/Marinerer/unity-webgl/issues/46 [<samp>(255e3)</samp>](https://github.com/Marinerer/unity-webgl/commit/255e314)
+
+##### &nbsp;&nbsp;&nbsp;&nbsp;[View changes on GitHub](https://github.com/Marinerer/unity-webgl/compare/v4.4.2...v4.4.3)
+
+
 ## v4.4.2
 
 ### &nbsp;&nbsp;&nbsp;🐞 Bug Fixes
